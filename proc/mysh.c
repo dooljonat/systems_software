@@ -46,10 +46,6 @@ int main() {
             exit(EXIT_SUCCESS);
         }
 
-        // // Print information about input
-        // fprintf(stderr, "length: %" PRIdMAX "\n", strlen(input));
-        // fprintf(stderr, "buffer: %s\n", input);
-
         // Remove newline
         input[strcspn(input, "\n")] = '\0';
 
@@ -63,12 +59,6 @@ int main() {
             commands[ncommands] != NULL;
             commands[++ncommands] = strtok(NULL, "|"));
 
-        // // Print obtained commands
-        // printf("%d\n", ncommands);
-        // for (i = 0; i < ncommands; i++) {
-        //     printf("%s\n", commands[i]);
-        // }
-
         // Initialize the pipe
         //  ( Only if there is more than one command )
         if (ncommands > 1) {
@@ -80,8 +70,6 @@ int main() {
 
         // Process the commands
         for (i = 0; i < ncommands; i++) {
-            // // Print i and current command
-            // printf("Command %d is %s \n", i, commands[i]);
 
             // Process command arguments
             narguments = 0;
@@ -92,7 +80,9 @@ int main() {
             // Check for output OR input redirection
             char *output_file = NULL;
             char *input_file  = NULL;
+
             for (j = 0; j < narguments; j++) {
+                
                 // Check for > character (OUTPUT)
                 if (strchr(arguments[j], '>')) {
                     output_file = (arguments[j]+1);
@@ -127,9 +117,6 @@ int main() {
 
                 // ... Child process
                 case 0:
-
-                    // // Print current pid
-                    // printf("\t%d\n", pid);
 
                     // Handle output redirection
                     if (output_file != NULL) {
@@ -233,9 +220,6 @@ int main() {
 
                 // ... Parent process (Case: Child's PID)
                 default:
-
-                    // // Print current pid
-                    // printf("\t%d\n", pid);
 
                     // Wait until child process is finished
                     do {
