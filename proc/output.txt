@@ -1,0 +1,6 @@
+Makefile
+mysh
+mysh.c
+output.txt
+ou.txt
+proc-tests
